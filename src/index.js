@@ -1,3 +1,4 @@
+import "./modern-normalize.css";
 import "./styles.css";
 
 const img = document.querySelector("img");
