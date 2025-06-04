@@ -7,25 +7,22 @@ const input = document.querySelector("input");
 const img = document.querySelector("img");
 let currentTerm = "shiba";
 
-function fetchGif(subject) {
+async function fetchGif(subject) {
   const url = `https://api.giphy.com/v1/gifs/translate?api_key=SPo3JCK4o2TrwOEWd89phqwnPcyZpJtg&s=${subject}`;
 
-  fetch(url, {
-    mode: "cors",
-  })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (response) {
-      if (!response.data || !response.data.images) {
-        alert("No gif found");
-        return;
-      }
-      img.src = response.data.images.original.url;
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+  try {
+    const response = await fetch(url, { mode: "cors" });
+    const responseData = await response.json();
+
+    if (!responseData.data || !responseData.data.images) {
+      alert("No gif found");
+      return;
+    }
+
+    img.src = responseData.data.images.original.url;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 newGifBtn.addEventListener("click", () => {
