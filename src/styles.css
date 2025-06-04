@@ -2,7 +2,11 @@ body {
   text-align: center;
 }
 
-button {
+body > * {
+  margin-top: 10px;
+}
+
+.new-gif-btn {
   display: block;
   margin: 0 auto;
 }
